@@ -1,0 +1,16 @@
+
+-  hosts: webservers
+   gather_facts: no
+   remote_user: student
+   become: yes
+   become_method: sudo
+   tasks:
+   - name: install web server
+     apt:
+      name: apache2
+      state: present
+      update_cache: yes
+   - name: copy index page
+     copy:
+      src: myfile.txt
+      dest: /var/www/html/index.html
